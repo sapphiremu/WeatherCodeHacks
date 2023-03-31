@@ -1,3 +1,9 @@
+# Wind Direction Averaging
+# ©Saffron Murcia 2023
+# v 0.1
+# Code to provide the average direction of wind over several
+# samples. Useful when working with low res windvanes.
+
 from math import sin, cos, atan2
 
 SAMPLESIZE = 30
