@@ -1,19 +1,25 @@
 # altitude correction
 # ©Saffron Murcia 2023
 # v 0.1
+# v 0.2 - Added funcionality for different plantary bodies.
+#         Thanks @DeltaDroid for suggestion.
 # Code to provide the pressure variance in MB at altitude in 
 # metres that will need to be added to raw pressure readings 
 # for standard readouts.
 from math import exp
-def airPressureDecrement(alt, tempC = 20):
-    REF_PRESSURE = 101325 # Reference pressure at sea level
-    REF_ALTITUDE = 0
-    # There is no reason to change G, M or R unless this software
-    # is to be used on another planet.
-    G = 9.80665 # Metres per second squared
-    M = 0.0289644 # Molar mass of air
-    R = 8.31432 # Universal gas constant
-    tempK = 273 + tempC # tempC in kelvins
-    pressure = REF_PRESSURE * exp(-G * M * (alt - REF_ALTITUDE)/(R * tempK))
-    pressureReduction = (REF_PRESSURE - pressure)/100
+def airPressureDecrement(altitude, tempC = 20, solarBody = "EARTH"):
+    planet = { 
+        "EARTH" : [101325, 9.80665, 0.0289644],
+        "MARS": [6518, 3.721, 0.044]
+        }
+    
+    altitudeReference = 0 # Referemce altitude for P
+    # P = 101325 # Reference pressure at sea level in Pascals
+    # G = 9.80665 # Metres per second squared
+    # M = 0.0289644 # Molar mass of air
+    pressureReference, gravity, molarAirMass = planet[solarBody]
+    universalGasConstant = 8.31432 # Universal gas constant
+    tempK = 273 + tempC # 20 C in kelvins
+    pressure = pressureReference * exp(-gravity * molarAirMass * (altitude - altitudeReference)/(universalGasConstant * tempK))
+    pressureReduction = (pressureReference - pressure)/100
     return (pressureReduction)
