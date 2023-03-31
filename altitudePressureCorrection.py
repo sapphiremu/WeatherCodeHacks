@@ -1,9 +1,9 @@
 # altitude correction
 # ©Saffron Murcia 2023
 # v 0.1
-# Code to provide the pressure variance at altitude in metres that
-# will need to be added to raw pressure readings for standard
-# readouts.
+# Code to provide the pressure variance in MB at altitude in 
+# metres that will need to be added to raw pressure readings 
+# for standard readouts.
 from math import exp
 def airPressureDecrement(alt, tempC = 20):
     REF_PRESSURE = 101325 # Reference pressure at sea level
