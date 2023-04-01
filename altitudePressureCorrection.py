@@ -3,7 +3,7 @@
 # v 0.1
 # v 0.2 - Added funcionality for different plantary bodies.
 #         Thanks @DeltaDroid for suggestion.
-# Code to provide the pressure variance in MB at altitude in 
+# Code to provide the pressure variance in hPa at altitude in 
 # metres that will need to be added to raw pressure readings 
 # for standard readouts.
 from math import exp
