@@ -3,6 +3,11 @@
 # v 0.1
 # Code to provide the average direction of wind over several
 # samples. Useful when working with low res windvanes.
+# Note of caution: While an average of direction can be taken
+# over a time period, it does not always give an improved or
+# otherwise totally accurate readout.
+# Try it out first, but don't use the results as your primary
+# data set.
 
 from math import sin, cos, atan2
 
