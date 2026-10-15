@@ -6,6 +6,9 @@
 # Code to provide the pressure variance in hPa at altitude in 
 # metres that will need to be added to raw pressure readings 
 # for standard readouts.
+# v 0.2.1 - Moved gas constant to a... constant.
+
+UNIVERSAL_GAS_CONSTANT = 8.31432
 from math import exp
 def airPressureDecrement(altitude, tempC = 20):
     solarBody = "EARTH"
@@ -16,8 +19,7 @@ def airPressureDecrement(altitude, tempC = 20):
     
     altitudeReference = 0 # Altitude for the pressureReference
     pressureReference, gravity, molarAirMass = planet[solarBody]
-    universalGasConstant = 8.31432 # Universal gas constant
     tempK = 273 + tempC # 20 C in kelvins
-    pressure = pressureReference * exp(-gravity * molarAirMass * (altitude - altitudeReference)/(universalGasConstant * tempK))
+    pressure = pressureReference * exp(-gravity * molarAirMass * (altitude - altitudeReference)/(UNIVERSAL_GAS_CONSTANT * tempK))
     pressureReduction = (pressureReference - pressure)/100
     return (pressureReduction)
